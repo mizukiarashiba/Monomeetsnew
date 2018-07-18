@@ -18,6 +18,8 @@ class Controller extends BaseController
         $count_favoritings = $user->favoritings()->count();
         $count_wantings = $user->wantings()->count();
         $count_wanters = $user->wanters()->count();
+        $count_posts = $user->posts()->count();
+
         
 
 
@@ -28,6 +30,8 @@ class Controller extends BaseController
             'count_favoritings' => $count_favoritings,
             'count_wantings' => $count_wantings,
             'count_wanters' => $count_wanters,
+            'count_posts' => $count_posts,
+
             
 
         ];

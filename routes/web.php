@@ -55,11 +55,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('wanters', 'UsersController@wanters')->name('users.wanters');
     });
 
-    Route::resource('monos', 'MonosController', ['only' => ['store', 'destroy']]);
+    Route::resource('monos', 'MonosController', ['only' => ['index', 'store', 'destroy']]);
     
 });
 
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('users', 'UsersController', ['only' => ['index', 'chat']]);
+    Route::resource('posts', 'PostsController', ['only' => ['store', 'destroy']]);
+});
 
 
 

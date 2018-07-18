@@ -33,14 +33,14 @@ class MonosController extends Controller
      $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $monos = $user->monos()->orderBy('created_at', 'desc')->paginate(10);
+            //$monos = Mono::all();
 
             $data = [
                 'user' => $user,
                 'monos' => $monos,
             ];
             $data += $this->counts($user);
-            return view('users.show', $data);
+            return view('users.timeline', $data);
         }else {
             return view('welcome');
         }
@@ -52,23 +52,17 @@ class MonosController extends Controller
     
     public function store(Request $request)
     {
-        $this->validate($request,[
-          'file'=> 'required',
+        $this->validate($request, [
             'title' => 'required|max:191',
             'content' => 'required|max:191',
-           ]);
-           
-        $filename = $request->file('file')->store('public/images');
+        ]);
 
         $request->user()->monos()->create([
             'title' => $request->title,
             'content' => $request->content,
-            'group_picture' => basename($filename),
         ]);
 
         return redirect()->back();
-        
-        
     }
     
     

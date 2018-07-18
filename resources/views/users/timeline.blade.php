@@ -5,6 +5,8 @@
 
                 @include('monos.monos', ['monos' => $monos])
                 
+                
+                
                
         
         

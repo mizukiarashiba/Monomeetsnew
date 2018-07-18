@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+
 @section('content')
     <div class="text-center">
         <h1>Sign up</h1>
@@ -34,3 +36,8 @@
         </div>
     </div>
 @endsection
+
+
+
+<link type="text/css" rel="stylesheet" href="css/register.css" />
+        

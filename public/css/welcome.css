@@ -1,0 +1,20 @@
+body {
+    background-image: url("1.jpg");
+    background-size: 100%;
+}
+
+#toppage {
+    margin-top: 20px;
+    font-size:60px;
+    font-family: 'century';
+    position: absolute;
+}
+
+.button{
+    display: inline-block;
+    text-decoration: none;
+    border: double 4px black;
+    border-radius: 3px;
+    transition: .4s;
+    
+}

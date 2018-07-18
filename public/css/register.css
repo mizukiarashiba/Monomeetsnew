@@ -1,0 +1,13 @@
+body {
+    background-image: url("3.jpg");
+    background-size: 20%;
+}
+
+#login{
+    position: absolute;
+    
+}
+
+p {
+    color:  red;
+}

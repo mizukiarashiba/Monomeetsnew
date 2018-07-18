@@ -101,7 +101,7 @@ public function unfollow($userId)
     
      public function favoritings()
     {
-        return $this->belongsToMany(Mono::class, 'mono_favorite', 'mono_id', 'favorite_id')->withTimestamps();
+        return $this->belongsToMany(Mono::class, 'mono_favorite', 'user_id', 'favorite_id')->withTimestamps();
     }
     
     
@@ -145,6 +145,63 @@ public function is_favoriting($monoId) {
 }
 
 
+
+  
+    public function want($monoId)
+{
+    // 既にフォローしているかの確認
+    $exist = $this->is_wanting($monoId);
+    // 自分自身ではないかの確認
+    
+    if ($exist) {
+        // 既にフォローしていれば何もしない
+        return false;
+    } else {
+        // 未フォローであればフォローする
+        $this->wantings()->attach($monoId);
+        return true;
+    }
+}
+
+public function unwant($monoId)
+{
+    // 既にフォローしているかの確認
+    $exist = $this->is_wanting($monoId);
+    // 自分自身ではないかの確認
+    
+
+    if ($exist) {
+        // 既にフォローしていればフォローを外す
+        $this->wantings()->detach($monoId);
+        return true;
+    } else {
+        // 未フォローであれば何もしない
+        return false;
+    }
+}
+
+public function is_wanting($monoId) {
+    return $this->wantings()->where('want_id', $monoId)->exists();
+}
+
+
+
+  public function wantings()
+    {
+        return $this->belongsToMany(Mono::class, 'mono_want', 'user_id', 'want_id')->withTimestamps();
+    }
+    
+
+    public function wanters()
+    {
+        return $this->belongsToMany(Mono::class, 'mono_want', 'want_id', 'user_id')->withTimestamps();
+    }
+
+   
+     public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 
 
 

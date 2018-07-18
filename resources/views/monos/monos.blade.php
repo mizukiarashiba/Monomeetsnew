@@ -1,20 +1,29 @@
-<ul class="media-list">
+<ul class="panel-list">
 @foreach ($monos as $mono)
-    <?php $user = $mono->user; ?>
-    <li class="media">
-        <div class="media-left">
-            <img class="media-object img-rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
+    <?php $user =   $mono->user; ?>
+    <class="panel">
+        
+        <div class="panel-header">
+              {!! link_to_route('monos.monopage', $mono->title, ['id' => $mono->id]) !!}
         </div>
-        <div class="media-body">
+            
+            <img class="media-object img-rounded img-responsive" src="{{ asset('storage/images/' . $mono->group_picture) }}" alt="写真を挿入">
+           
+        <div class="panel-body">
+            
+        </div>
+        
+        <div class="panel-footer">
+           　　　 @include ('mono_favorite.favorite_button', ['monos' => $monos])
+           　　　  @include ('mono_want.want_button', ['user' => $user])
+        </div>
+        
             <div>
                 {!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $mono->created_at }}</span>
             </div>
+            
             <div>
-                <p>{!! nl2br(e($mono->content)) !!}</p>
-            </div>
-            <div>
-                  
-                @include ('mono_favorite.favorite_button', ['monos' => $monos])
+                 
                 
                 @if (Auth::id() == $mono->user_id)
                     {!! Form::open(['route' => ['monos.destroy', $mono->id], 'method' => 'delete']) !!}

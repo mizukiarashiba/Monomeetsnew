@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mono extends Model
 {
-     protected $fillable = ['content', 'user_id'];
+     protected $fillable = ['title', 'content', 'user_id', 'group_picture'];
 
     public function user()
     {

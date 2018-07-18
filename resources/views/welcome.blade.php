@@ -2,23 +2,7 @@
 
 @section('content')
     @if (Auth::check())
-        <div class="row">
-            <aside class="col-xs-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{ $user->name }}</h3>
-                    </div>
-                    <div class="panel-body">
-                        <img class="media-object img-rounded img-responsive" src="{{ Gravatar::src($user->meetsid, 500) }}" alt="">
-                    </div>
-                </div>
-            </aside>
-            <div class="col-xs-8">
-                @if (count($monos) > 0)
-                    @include('monos.monos', ['monos' => $monos])
-                @endif
-            </div>
-        </div>
+        @include('users.show')
     @else
         <div class="center jumbotron">
             <div class="text-center">
@@ -28,3 +12,6 @@
         </div>
     @endif
 @endsection
+
+
+<link type="text/css" rel="stylesheet" href="css/welcome.css" />
